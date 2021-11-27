@@ -1,0 +1,8 @@
+@font-face{
+    font-family:"可爱体";
+    src:url('./萝莉体.ttc');
+}
+
+body {
+    font-family: 可爱体!important;
+}
