@@ -21,6 +21,8 @@ npm run build
 2. 代办的添加、删除。
 3. 待增加……
 
+[预览](https://cyw20031123.github.io/ordinaryTODO/)
+
 # 注意！
 
 ## 使用时请把src/main.js文件里的AV.init的serverURL更改为自己Leanloud的URL！谢谢配合。
