@@ -25,4 +25,4 @@ npm run build
 
 # 注意！
 
-## 使用时请把src/main.js文件里的AV.init的serverURL更改为自己Leanloud的URL！谢谢配合。
+## 使用时请把src/main.js文件里的AV.init的AppId与appKey更改为自己的Leanloud！谢谢配合。
