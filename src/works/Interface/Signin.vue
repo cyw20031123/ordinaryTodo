@@ -1,6 +1,12 @@
 <template>
   <div class="signin">
-    <input type="name" class="name" v-model="name" @keyup.enter="next" placeholder="请输入账号\邮箱" />
+    <input
+      type="name"
+      class="name"
+      v-model="name"
+      @keyup.enter="next"
+      placeholder="请输入账号\邮箱"
+    />
     <input
       type="password"
       class="password"
@@ -9,7 +15,13 @@
       v-model="password"
       placeholder="请输入密码"
     />
-    <input type="button" class="btn btn-info" value="登录" @click="signin" />
+    <div class="Forget" @click="Forget">忘记密码</div>
+    <input
+      type="button"
+      class="btn btn-info input"
+      value="登录"
+      @click="signin"
+    />
   </div>
 </template>
 
@@ -28,13 +40,11 @@ export default {
     },
     signin() {
       AV.User.logIn(this.name, this.password).then(
-      //使用用户名登录
         (user) => {
           this.$emit("up");
         },
         (error) => {
           AV.User.loginWithEmail(this.name, this.password).then(
-            //使用邮箱登录
             (user) => {
               this.$emit("up");
             },
@@ -45,6 +55,15 @@ export default {
         }
       );
     },
+    Forget() {
+      let person = prompt("请输入你的邮箱( ･´ω`･ )");
+      if (person != null && person != "") {
+        AV.User.requestPasswordReset(person);
+        alert("请查看您的邮箱(*･ω< ) ");
+      }else{
+        alert("什么都没有输入哦！");
+      }
+    },
   },
 };
 </script>
@@ -53,6 +72,7 @@ export default {
 .signin {
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   height: 300px;
   padding: 60px 40px 0 40px;
 }
@@ -64,10 +84,21 @@ export default {
   background-color: transparent;
   padding: 5px 10px;
 }
+.password,
 .name {
   margin-bottom: 10px;
 }
-.password {
+
+.input {
+  width: 100%;
+}
+
+.Forget {
   margin-bottom: 30px;
+  cursor: pointer;
+  color: gray;
+}
+.Forget:hover {
+  color: black;
 }
 </style>
