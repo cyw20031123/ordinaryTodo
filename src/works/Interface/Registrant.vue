@@ -50,6 +50,9 @@ export default {
       this.$refs.email.focus();
     },
     registrant() {
+      const land = AV.Object.extend("UserName");
+      const data = new land();
+      data.set("name", this.name);
       const user = new AV.User();
       //账号设置
       user.setUsername(this.name);
@@ -61,14 +64,14 @@ export default {
       this.password = "";
       this.email = "";
       user.signUp().then(
-        (user) => {
-          // 注册成功
-
-          alert("注册成功啦！快去登录吧！");
-        },
-        (error) => {
-          alert("注册失败啦！换个名字试一试？");
-        }
+      	(user) => {
+      		// 注册成功
+      		data.save();
+      		alert("注册成功啦！快去登录吧！");
+      	},
+      	(error) => {
+      		alert("注册失败啦！换个名字试一试？");
+      	}
       );
     },
   },
